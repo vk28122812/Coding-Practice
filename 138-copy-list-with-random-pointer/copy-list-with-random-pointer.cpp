@@ -19,8 +19,6 @@ public:
     Node* copyRandomList(Node* head) {
         unordered_map<Node*,int> given;
         unordered_map<int,Node*> mp;
-        given[0] = -1;
-        mp[-1] = 0;
         Node* sentinel = new Node(-1);
         Node* sentinelTemp = sentinel;
         Node* temp = head;
@@ -33,6 +31,8 @@ public:
             temp = temp->next;
             idx++;
         }
+        given[0] = -1;
+        mp[-1] = 0;
         sentinelTemp = sentinel->next;
         temp = head;
         while(temp){
