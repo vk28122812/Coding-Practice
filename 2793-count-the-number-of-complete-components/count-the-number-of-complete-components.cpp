@@ -10,8 +10,7 @@ public:
     }
     int countCompleteComponents(int n, vector<vector<int>>& edges) {
         vector<int> degree(n,0), vis(n,0);
-        vector<vector<int>>adj(n);
-        vector<vector<int>> components;
+        vector<vector<int>>adj(n), components;
         for(auto e:edges){
             adj[e[0]].push_back(e[1]);
             adj[e[1]].push_back(e[0]);
