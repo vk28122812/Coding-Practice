@@ -1,12 +1,21 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>&adj,vector<int>&vis,vector<int>&cmp,int u){
-        vis[u] = 1;
+    vector<int> bfs(vector<vector<int>>&adj,vector<int>&vis,int u){
+        vector<int> cmp;
         cmp.push_back(u);
-        for(int v:adj[u]){
-            if(vis[v])continue;
-            dfs(adj,vis,cmp,v);
+        queue<int> q;
+        q.push(u);
+        vis[u] = 1;
+        while(q.size()){
+            int v = q.front(); q.pop();
+            for(int next:adj[v]){
+                if(vis[next])continue;
+                cmp.push_back(next);
+                q.push(next);
+                vis[next] = 1;
+            }
         }
+        return cmp;
     }
     int countCompleteComponents(int n, vector<vector<int>>& edges) {
         vector<int> degree(n,0), vis(n,0);
@@ -20,8 +29,7 @@ public:
         for(int i=0;i<n;i++){
             if(!vis[i]){
                 vector<int>cmp;
-                dfs(adj,vis,cmp,i);
-                components.push_back(cmp);
+                components.push_back(bfs(adj,vis,i));
             }
         }
         int ans = 0 ;
