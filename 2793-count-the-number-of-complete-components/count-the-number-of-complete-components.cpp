@@ -26,18 +26,15 @@ public:
         }
         int ans = 0 ;
         for(auto cmp:components){   
-            bool flag = 1;
-                for(int c:cmp){
-                    if(degree[c] != (cmp.size()-1)){
-                        flag = 0;
-                        break;
-                    }
-                }
-                if(flag){
-                    ans++;
-                }
+            int v = cmp.size();
+            int e = 0;
+            for(int c:cmp){
+                e += degree[c];
+            }
+            if( v * (v-1) == e ){
+                ans++;
+            }
         }
         return ans;
-
     }
 };
