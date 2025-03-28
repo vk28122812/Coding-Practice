@@ -1,21 +1,22 @@
 class Solution {
 public:
-    vector<int> bfs(vector<vector<int>>&adj,vector<int>&vis,int u){
-        vector<int> cmp;
-        cmp.push_back(u);
+    bool bfs(vector<vector<int>>&adj,vector<int>&degree,vector<int>&vis,int u){
         queue<int> q;
         q.push(u);
         vis[u] = 1;
+        int m = 1;
+        int e = degree[u];
         while(q.size()){
             int v = q.front(); q.pop();
             for(int next:adj[v]){
                 if(vis[next])continue;
-                cmp.push_back(next);
+                m++;
+                e+=degree[next];
                 q.push(next);
                 vis[next] = 1;
             }
         }
-        return cmp;
+        return e == m*(m-1);
     }
     int countCompleteComponents(int n, vector<vector<int>>& edges) {
         vector<int> degree(n,0), vis(n,0);
@@ -26,21 +27,10 @@ public:
             degree[e[0]]++;
             degree[e[1]]++;
         }
+        int ans = 0 ;
         for(int i=0;i<n;i++){
             if(!vis[i]){
-                vector<int>cmp;
-                components.push_back(bfs(adj,vis,i));
-            }
-        }
-        int ans = 0 ;
-        for(auto cmp:components){   
-            int v = cmp.size();
-            int e = 0;
-            for(int c:cmp){
-                e += degree[c];
-            }
-            if( v * (v-1) == e ){
-                ans++;
+                ans += bfs(adj,degree,vis,i);
             }
         }
         return ans;
