@@ -8,14 +8,12 @@ public:
             left[i] = mx;
             mx = max(mx, nums[i]);
         }
+        long long ans = 0;
         mx = nums[n-1];
         for(int i=n-2;i>=0;i--){
             right[i] = mx;
             mx = max(mx, nums[i]);
-        }
-        long long ans = 0;
-        for(int i=1;i<n-1;i++){
-            ans = max(ans, (left[i]-nums[i])*(long long)right[i]);
+            if(i>0)ans = max(ans, (left[i]-nums[i])*(long long)right[i]);
         }
         return ans;
     }
