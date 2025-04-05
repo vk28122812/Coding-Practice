@@ -1,17 +1,16 @@
 class Solution {
 public:
-    int subsetXORSum(vector<int>& nums) {
-        int total = 0;
-        int n = nums.size();
-        for(int mask=0;mask<(1<<n);mask++){
-            int XOR = 0;
-
-            for(int i=0;i<n;i++){
-                if(mask & (1<<i))XOR ^= nums[i];
-            }
-
-            total += XOR;
+    void solve(vector<int>&nums,int idx,int XOR,int&ans){
+        if(idx==nums.size()){
+            ans += XOR;
+            return;
         }
-        return total;
+        solve(nums,idx+1,XOR ^ nums[idx],ans);
+        solve(nums,idx+1,XOR,ans);
+    }
+    int subsetXORSum(vector<int>& nums) {
+        int ans = 0;
+        solve(nums,0,0,ans);
+        return ans;
     }
 };
