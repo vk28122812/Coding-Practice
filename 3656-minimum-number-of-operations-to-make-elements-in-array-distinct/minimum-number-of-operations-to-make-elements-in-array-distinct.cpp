@@ -1,20 +1,18 @@
 class Solution {
 public:
     int minimumOperations(vector<int>& nums) {
-        unordered_map<int,int>mp;
+        int mp[101] = {};
+        int notUnique = 0;
         for(const int&i : nums){
             mp[i]++;
         }
-        for(const int&i : nums){
-            if(mp.count(i) && mp[i]==1)mp.erase(i);
-        }
+        for(int i:mp)if(i>1)notUnique++;
         int ans = 0;
-        while(mp.size()){
-            cout << mp.size()<<" ";
+        while(notUnique){
             for(int i=ans*3;i<min(ans*3+3,(int)nums.size());i++){
-                if(mp.count(nums[i])){
+                if(mp[nums[i]]>1){
                     mp[nums[i]]--;
-                    if(mp[nums[i]]==1)mp.erase(nums[i]);
+                    if(mp[nums[i]]==1)notUnique--;
                 }
             }
             ans++;
