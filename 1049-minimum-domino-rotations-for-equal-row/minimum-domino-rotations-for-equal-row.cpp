@@ -4,10 +4,8 @@ public:
         unordered_map<int,int> mp;
         int n = tops.size();
         for(int i=0;i<n;i++){
-            if(tops[i]==bottoms[i]){
-                mp[tops[i]]++;
-            }else{
-                mp[tops[i]]++;
+            mp[tops[i]]++;
+            if(tops[i]!=bottoms[i]){
                 mp[bottoms[i]]++;
             }
         }
