@@ -12,7 +12,7 @@ public:
             }
         }
         int tmp = 0;
-        for(auto i:mp){
+        for(auto&i:mp){
             if(i.second == n)tmp=i.first;
         }
         if(tmp==0)return -1;
