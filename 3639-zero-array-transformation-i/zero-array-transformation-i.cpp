@@ -7,8 +7,8 @@ public:
             pre[q[0]]-=1;
             pre[q[1]+1]+=1;
         }   
-        for(auto i:nums)cout<<i<<" ";cout<<endl;
-        for(auto i:pre)cout<<i<<" ";
+        // for(auto i:nums)cout<<i<<" ";cout<<endl;
+        // for(auto i:pre)cout<<i<<" ";
         int s=0;
         for(int i=0;i<n;i++){
             s += pre[i];
