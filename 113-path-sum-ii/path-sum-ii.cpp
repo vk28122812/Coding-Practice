@@ -16,17 +16,14 @@ public:
         if(!root){
             return;
         }
-        path.push_back(root->val);
-        targetSum -= root->val;
-    
-        dfs(root->left, path, targetSum);
-        dfs(root->right,path, targetSum);
-
-        if(targetSum == 0 && !root->left && !root->right){
+        if(!root->left && !root->right && (targetSum - root->val == 0)){
             ans.push_back(path);
+            ans.back().push_back(root->val);
+            return;
         }
-
-        targetSum += root->val;
+        path.push_back(root->val);
+        dfs(root->left, path, targetSum - root->val);
+        dfs(root->right,path, targetSum - root->val);
         path.pop_back();
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
