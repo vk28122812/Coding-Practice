@@ -51,7 +51,7 @@ public:
                 diff[next] = (diff[next] * pow(v, MOD - 2 ) )% MOD;
             }
 
-            for( int i = 0; i<= nums.size(); i++){
+            for( int i = 0; i< nums.size(); i++){
                 if(i - k >= 0){
                     diff[i] = (diff[i] * diff[i-k])%MOD;
                 }
