@@ -1,18 +1,18 @@
 class Solution {
 public:
     bool isGood(vector<int>& nums) {
-        int n = nums.size();
-        sort(nums.begin(), nums.begin()+n);
+        int mx = *max_element(nums.begin(), nums.end());
 
-        int back = nums.back();
-        if(back != n - 1) return 0;
+        cout << mx << endl;
+        unordered_map<int,int> mp;
 
-        for(int i=0;i<n-1;i++){
-            if(nums[i] != i+1) return 0;
+        for(auto i:nums) mp[i]++;
+
+        if(mp[mx] != 2) return 0;
+        for(int i=1;i<mx;i++){
+            if(mp[i] != 1) return 0;
         }
 
-        
-
-        return 1;
+        return 1;   
     }
 };
