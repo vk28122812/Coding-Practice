@@ -3,7 +3,7 @@ public:
     bool isGood(vector<int>& nums) {
         int mx = *max_element(nums.begin(), nums.end());
 
-        cout << mx << endl;
+
         unordered_map<int,int> mp;
 
         for(auto i:nums) mp[i]++;
